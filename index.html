@@ -6,9 +6,10 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -23,7 +24,7 @@
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -31,22 +32,20 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-search.js"></script>
         <script src="data/Statistineregije_1.js"></script>
         <script src="data/Kulturnadediina_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:9
-        })
+        }).fitBounds([[45.32456136952747,13.075281630144234],[46.932987172735636,17.15454600414132]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
-            if (bounds_group.getLayers().length) {
-                map.fitBounds(bounds_group.getBounds());
-            }
-            map.setMaxBounds(map.getBounds());
         }
         map.createPane('pane_OpenStreetMap_0');
         map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
@@ -356,6 +355,16 @@
         });
         bounds_group.addLayer(layer_Kulturnadediina_2);
         map.addLayer(layer_Kulturnadediina_2);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
         var baseMaps = {};
         L.control.layers(baseMaps,{'Kulturna dediščina<br /><table><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_arheološkanajdišča0.png" /></td><td>arheološka najdišča</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_drugiobjektiinnaprave1.png" /></td><td>drugi objekti in naprave</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_kulturnakrajina2.png" /></td><td>kulturna krajina</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_naseljainnjihovideli3.png" /></td><td>naselja in njihovi deli</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_ostalo4.png" /></td><td>ostalo</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_parkiinvrtovi5.png" /></td><td>parki in vrtovi</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_spominskiobjektiinkraji6.png" /></td><td>spominski objekti in kraji</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_stavbe7.png" /></td><td>stavbe</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_stavbesparkializvrtovi8.png" /></td><td>stavbe s parki ali z vrtovi</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_9.png" /></td><td></td></tr></table>': layer_Kulturnadediina_2,'<img src="legend/Statistineregije_1.png" /> Statistične regije': layer_Statistineregije_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
         setBounds();
