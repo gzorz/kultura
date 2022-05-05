@@ -6,10 +6,9 @@
         <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet-search.css">
-        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -24,7 +23,7 @@
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -32,18 +31,15 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-search.js"></script>
-        <script src="data/Statistineregije_1.js"></script>
-        <script src="data/Kulturnadediina_2.js"></script>
+        <script src="data/Kulturnadediina_1.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:9
-        }).fitBounds([[45.32456136952747,13.075281630144234],[46.932987172735636,17.15454600414132]]);
+        }).fitBounds([[45.3922727945707,13.088331209776175],[46.8937109524556,16.839262135254682]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -60,70 +56,7 @@
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
-        function pop_Statistineregije_1(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ENOTA'] !== null ? autolinker.link(feature.properties['ENOTA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SR_MID'] !== null ? autolinker.link(feature.properties['SR_MID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SR_ID'] !== null ? autolinker.link(feature.properties['SR_ID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SR_UIME'] !== null ? autolinker.link(feature.properties['SR_UIME'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['POV_KM2'] !== null ? autolinker.link(feature.properties['POV_KM2'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['D_OD'] !== null ? autolinker.link(feature.properties['D_OD'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['DV_OD'] !== null ? autolinker.link(feature.properties['DV_OD'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['STATUS'] !== null ? autolinker.link(feature.properties['STATUS'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Y_C'] !== null ? autolinker.link(feature.properties['Y_C'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['X_C'] !== null ? autolinker.link(feature.properties['X_C'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_Statistineregije_1_0() {
-            return {
-                pane: 'pane_Statistineregije_1',
-                opacity: 1,
-                color: 'rgba(228,26,28,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 1.0,
-                fillOpacity: 0,
-                interactive: false,
-            }
-        }
-        map.createPane('pane_Statistineregije_1');
-        map.getPane('pane_Statistineregije_1').style.zIndex = 401;
-        map.getPane('pane_Statistineregije_1').style['mix-blend-mode'] = 'normal';
-        var layer_Statistineregije_1 = new L.geoJson(json_Statistineregije_1, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Statistineregije_1',
-            layerName: 'layer_Statistineregije_1',
-            pane: 'pane_Statistineregije_1',
-            onEachFeature: pop_Statistineregije_1,
-            style: style_Statistineregije_1_0,
-        });
-        bounds_group.addLayer(layer_Statistineregije_1);
-        map.addLayer(layer_Statistineregije_1);
-        function pop_Kulturnadediina_2(feature, layer) {
+        function pop_Kulturnadediina_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2"><strong>EŠD</strong><br />' + (feature.properties['ESD'] !== null ? autolinker.link(feature.properties['ESD'].toLocaleString()) : '') + '</td>\
@@ -171,12 +104,12 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Kulturnadediina_2_0(feature) {
+        function style_Kulturnadediina_1_0(feature) {
             switch(String(feature.properties['Zvrst'])) {
                 case 'arheološka najdišča':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -185,14 +118,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(220,217,117,1.0)',
+                fillColor: 'rgba(59,237,154,1.0)',
                 interactive: true,
             }
                     break;
                 case 'drugi objekti in naprave':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -201,14 +134,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(237,86,212,1.0)',
+                fillColor: 'rgba(90,217,237,1.0)',
                 interactive: true,
             }
                     break;
                 case 'kulturna krajina':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -217,14 +150,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(169,224,126,1.0)',
+                fillColor: 'rgba(227,131,236,1.0)',
                 interactive: true,
             }
                     break;
                 case 'naselja in njihovi deli':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -233,14 +166,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(218,103,36,1.0)',
+                fillColor: 'rgba(58,216,47,1.0)',
                 interactive: true,
             }
                     break;
                 case 'ostalo':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -249,14 +182,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(113,231,133,1.0)',
+                fillColor: 'rgba(126,89,200,1.0)',
                 interactive: true,
             }
                     break;
                 case 'parki in vrtovi':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -265,14 +198,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(143,144,236,1.0)',
+                fillColor: 'rgba(45,89,207,1.0)',
                 interactive: true,
             }
                     break;
                 case 'spominski objekti in kraji':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -281,14 +214,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(200,90,116,1.0)',
+                fillColor: 'rgba(177,239,53,1.0)',
                 interactive: true,
             }
                     break;
                 case 'stavbe':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -297,14 +230,14 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(101,171,214,1.0)',
+                fillColor: 'rgba(230,199,122,1.0)',
                 interactive: true,
             }
                     break;
                 case 'stavbe s parki ali z vrtovi':
                     return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
+                pane: 'pane_Kulturnadediina_1',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -313,78 +246,42 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(149,40,232,1.0)',
-                interactive: true,
-            }
-                    break;
-                default:
-                    return {
-                pane: 'pane_Kulturnadediina_2',
-                radius: 6.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(40,221,179,1.0)',
+                fillColor: 'rgba(215,56,35,1.0)',
                 interactive: true,
             }
                     break;
             }
         }
-        map.createPane('pane_Kulturnadediina_2');
-        map.getPane('pane_Kulturnadediina_2').style.zIndex = 402;
-        map.getPane('pane_Kulturnadediina_2').style['mix-blend-mode'] = 'normal';
-        var layer_Kulturnadediina_2 = new L.geoJson(json_Kulturnadediina_2, {
+        map.createPane('pane_Kulturnadediina_1');
+        map.getPane('pane_Kulturnadediina_1').style.zIndex = 401;
+        map.getPane('pane_Kulturnadediina_1').style['mix-blend-mode'] = 'normal';
+        var layer_Kulturnadediina_1 = new L.geoJson(json_Kulturnadediina_1, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Kulturnadediina_2',
-            layerName: 'layer_Kulturnadediina_2',
-            pane: 'pane_Kulturnadediina_2',
-            onEachFeature: pop_Kulturnadediina_2,
+            dataVar: 'json_Kulturnadediina_1',
+            layerName: 'layer_Kulturnadediina_1',
+            pane: 'pane_Kulturnadediina_1',
+            onEachFeature: pop_Kulturnadediina_1,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_Kulturnadediina_2_0(feature));
+                return L.circleMarker(latlng, style_Kulturnadediina_1_0(feature));
             },
         });
-        bounds_group.addLayer(layer_Kulturnadediina_2);
-        map.addLayer(layer_Kulturnadediina_2);
-        var osmGeocoder = new L.Control.Geocoder({
-            collapsed: true,
-            position: 'topleft',
-            text: 'Search',
-            title: 'Testing'
-        }).addTo(map);
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .className += ' fa fa-search';
-        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
-        .title += 'Search for a place';
+        bounds_group.addLayer(layer_Kulturnadediina_1);
+        map.addLayer(layer_Kulturnadediina_1);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Kulturna dediščina<br /><table><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_arheološkanajdišča0.png" /></td><td>arheološka najdišča</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_drugiobjektiinnaprave1.png" /></td><td>drugi objekti in naprave</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_kulturnakrajina2.png" /></td><td>kulturna krajina</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_naseljainnjihovideli3.png" /></td><td>naselja in njihovi deli</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_ostalo4.png" /></td><td>ostalo</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_parkiinvrtovi5.png" /></td><td>parki in vrtovi</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_spominskiobjektiinkraji6.png" /></td><td>spominski objekti in kraji</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_stavbe7.png" /></td><td>stavbe</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_stavbesparkializvrtovi8.png" /></td><td>stavbe s parki ali z vrtovi</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_2_9.png" /></td><td></td></tr></table>': layer_Kulturnadediina_2,'<img src="legend/Statistineregije_1.png" /> Statistične regije': layer_Statistineregije_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+        L.control.layers(baseMaps,{'Kulturna dediščina<br /><table><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_arheološkanajdišča0.png" /></td><td>arheološka najdišča</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_drugiobjektiinnaprave1.png" /></td><td>drugi objekti in naprave</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_kulturnakrajina2.png" /></td><td>kulturna krajina</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_naseljainnjihovideli3.png" /></td><td>naselja in njihovi deli</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_ostalo4.png" /></td><td>ostalo</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_parkiinvrtovi5.png" /></td><td>parki in vrtovi</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_spominskiobjektiinkraji6.png" /></td><td>spominski objekti in kraji</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_stavbe7.png" /></td><td>stavbe</td></tr><tr><td style="text-align: center;"><img src="legend/Kulturnadediina_1_stavbesparkializvrtovi8.png" /></td><td>stavbe s parki ali z vrtovi</td></tr></table>': layer_Kulturnadediina_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
         setBounds();
         map.addControl(new L.Control.Search({
-            layer: layer_Kulturnadediina_2,
+            layer: layer_mkrkd2018izbranivnosi_1,
             initial: false,
             hideMarkerOnCollapse: true,
             propertyName: 'Ime'}));
         document.getElementsByClassName('search-button')[0].className +=
          ' fa fa-binoculars';
-        resetLabels([layer_Statistineregije_1]);
-        map.on("zoomend", function(){
-            resetLabels([layer_Statistineregije_1]);
-        });
-        map.on("layeradd", function(){
-            resetLabels([layer_Statistineregije_1]);
-        });
-        map.on("layerremove", function(){
-            resetLabels([layer_Statistineregije_1]);
-        });
         </script>
     </body>
 </html>
